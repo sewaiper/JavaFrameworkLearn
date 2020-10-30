@@ -1,22 +1,30 @@
 package framework.context;
 
-import framework.context.configurators.factory.BaseFactoryConfigurator;
+import framework.cars.Volvo;
+import framework.context.configurators.factory.DefaultFactoryConfigurator;
 import framework.context.configurators.objects.InjectPropertyRandomField;
 import framework.context.interfaces.FactoryConfigurator;
 import framework.context.interfaces.ObjectConfigurator;
+import framework.interfaces.Car;
 import lombok.SneakyThrows;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class ObjectFactory {
     private static final ObjectFactory factory = new ObjectFactory();
 
-    private final FactoryConfigurator configurator;
+    private final FactoryConfigurator factoryConfigurator;
     private final Set<ObjectConfigurator> objectConfigurators;
 
     private ObjectFactory() {
-        configurator = new BaseFactoryConfigurator("framework");
+        Map<Class<?>, Class<?>> abstractToImpl = new HashMap<>();
+        abstractToImpl.putIfAbsent(Car.class, Volvo.class);
+
+        factoryConfigurator = new DefaultFactoryConfigurator("framework", abstractToImpl);
+
         objectConfigurators = new HashSet<>();
         objectConfigurators.add(new InjectPropertyRandomField());
     }
@@ -30,14 +38,14 @@ public class ObjectFactory {
         Class<? extends T> implClass = type;
 
         if(implClass.isInterface()) {
-            implClass = configurator.getImplementation(type);
+            implClass = factoryConfigurator.getImplementation(type);
         }
 
         T object = implClass.getConstructor().newInstance();
 
         // Configure object
-        for(ObjectConfigurator configurator: objectConfigurators) {
-            configurator.configure(object);
+        for(ObjectConfigurator objectConfigurator: objectConfigurators) {
+            objectConfigurator.configure(object);
         }
 
         return object;
