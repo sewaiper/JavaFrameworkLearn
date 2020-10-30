@@ -1,14 +1,14 @@
 package framework.cars;
 
 import framework.annotations.MagicNumber;
-import framework.context.ObjectFactory;
+import framework.context.ObjectFactoryDefault;
 import framework.interfaces.Car;
 import framework.interfaces.Engine;
 
 public class Volvo implements Car {
     private static final String brand = "Volvo";
     @MagicNumber
-    private final Engine engine = ObjectFactory.getInstance().createObject(Engine.class);
+    private Engine engine;
 
     @Override
     public void showInfo() {

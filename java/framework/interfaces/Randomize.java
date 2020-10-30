@@ -1,4 +1,4 @@
-package framework.context.interfaces;
+package framework.interfaces;
 
 public interface Randomize {
     void randomize();

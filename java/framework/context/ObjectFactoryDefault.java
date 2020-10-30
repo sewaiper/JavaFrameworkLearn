@@ -2,9 +2,10 @@ package framework.context;
 
 import framework.cars.Volvo;
 import framework.context.configurators.factory.DefaultFactoryConfigurator;
-import framework.context.configurators.objects.InjectPropertyRandomField;
+import framework.configs.InjectPropertyRandomField;
 import framework.context.interfaces.FactoryConfigurator;
 import framework.context.interfaces.ObjectConfigurator;
+import framework.context.interfaces.ObjectFactory;
 import framework.interfaces.Car;
 import lombok.SneakyThrows;
 
@@ -13,13 +14,11 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class ObjectFactory {
-    private static final ObjectFactory factory = new ObjectFactory();
-
+public class ObjectFactoryDefault implements ObjectFactory {
     private final FactoryConfigurator factoryConfigurator;
     private final Set<ObjectConfigurator> objectConfigurators;
 
-    private ObjectFactory() {
+    public ObjectFactoryDefault() {
         Map<Class<?>, Class<?>> abstractToImpl = new HashMap<>();
         abstractToImpl.putIfAbsent(Car.class, Volvo.class);
 
@@ -29,11 +28,8 @@ public class ObjectFactory {
         objectConfigurators.add(new InjectPropertyRandomField());
     }
 
-    public static ObjectFactory getInstance() {
-        return factory;
-    }
-
     @SneakyThrows
+    @Override
     public <T> T createObject(Class<T> type) {
         Class<? extends T> implClass = type;
 

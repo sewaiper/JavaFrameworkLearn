@@ -1,6 +1,6 @@
 package framework.engines;
 
-import framework.context.interfaces.Randomize;
+import framework.interfaces.Randomize;
 import framework.interfaces.Engine;
 
 import java.util.Random;

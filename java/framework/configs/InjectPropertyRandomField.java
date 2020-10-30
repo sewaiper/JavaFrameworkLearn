@@ -1,9 +1,9 @@
-package framework.context.configurators.objects;
+package framework.configs;
 
 import com.sun.xml.internal.txw2.IllegalAnnotationException;
 import framework.annotations.MagicNumber;
 import framework.context.interfaces.ObjectConfigurator;
-import framework.context.interfaces.Randomize;
+import framework.interfaces.Randomize;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.Field;
