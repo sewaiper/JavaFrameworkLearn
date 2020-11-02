@@ -1,6 +1,6 @@
-package framework.cars;
+package application.cars;
 
-import framework.interfaces.Car;
+import application.interfaces.Car;
 
 public class Mercedes implements Car {
     @Override

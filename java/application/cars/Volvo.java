@@ -1,13 +1,16 @@
-package framework.cars;
+package application.cars;
 
-import framework.annotations.MagicNumber;
-import framework.context.ObjectFactoryDefault;
-import framework.interfaces.Car;
-import framework.interfaces.Engine;
+import application.annotations.MagicNumber;
+import application.interfaces.Car;
+import application.interfaces.Engine;
+import framework.annotations.Bind;
+import framework.annotations.Object;
 
+@Object("volvoCar")
 public class Volvo implements Car {
     private static final String brand = "Volvo";
-    @MagicNumber
+
+    @Bind
     private Engine engine;
 
     @Override

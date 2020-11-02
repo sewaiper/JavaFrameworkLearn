@@ -7,5 +7,6 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MagicNumber {
+public @interface Specified {
+    String bindName() default "";
 }

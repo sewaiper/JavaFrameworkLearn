@@ -1,4 +1,4 @@
-package framework.context.interfaces;
+package framework.objects;
 
 public interface ObjectConfigurator {
     public void configure(Object o);

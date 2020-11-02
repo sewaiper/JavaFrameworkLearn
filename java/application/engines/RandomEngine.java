@@ -1,11 +1,11 @@
-package framework.engines;
+package application.engines;
 
-import framework.interfaces.Randomize;
-import framework.interfaces.Engine;
+import application.interfaces.Randomize;
+import application.interfaces.Engine;
 
 import java.util.Random;
 
-public class VolvoEngine implements Engine, Randomize {
+public class RandomEngine implements Engine, Randomize {
     private int horsepower;
     private int torque;
 

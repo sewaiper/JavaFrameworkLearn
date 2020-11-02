@@ -1,4 +1,4 @@
-package framework.interfaces;
+package application.interfaces;
 
 public interface Engine {
     int getHorsepower();
